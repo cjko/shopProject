@@ -7,8 +7,9 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "User")
-public class User {
+@Table(name = "Customer")
+public class Customer {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -43,10 +44,10 @@ public class User {
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedAt;
 
-    public User() {
+    public Customer() {
     }
 
-    public User(String email, String firstName, String lastName, Date birthdate, String pwHash, String pwSalt) {
+    public Customer(String email, String firstName, String lastName, Date birthdate, String pwHash, String pwSalt) {
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;

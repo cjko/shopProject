@@ -1,6 +1,7 @@
 package com.shopProject;
 
 import com.shopProject.entity.Product;
+import com.shopProject.entity.Customer;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.springframework.context.annotation.Bean;
@@ -15,6 +16,7 @@ public class AppConfig {
         return new Configuration()
                     .configure("hibernate.cfg.xml")
                     .addAnnotatedClass(Product.class)
+                    .addAnnotatedClass(Customer.class)
                     .buildSessionFactory();
     }
 }
