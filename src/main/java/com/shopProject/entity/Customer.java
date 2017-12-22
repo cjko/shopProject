@@ -4,10 +4,12 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
-@Table(name = "Customer")
+@Table(name = "customer")
 public class Customer {
 
     @Id
@@ -44,6 +46,10 @@ public class Customer {
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedAt;
 
+    @OneToMany(mappedBy = "customer",
+                cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
+    private List<CartItem> cartItems;
+
     public Customer() {
     }
 
@@ -54,6 +60,13 @@ public class Customer {
         this.birthdate = birthdate;
         this.pwHash = pwHash;
         this.pwSalt = pwSalt;
+    }
+
+    public void addCartItem(CartItem cartItem) {
+        if(this.cartItems == null) {
+            this.cartItems = new ArrayList<>();
+        }
+        this.cartItems.add(cartItem);
     }
 
     public int getId() {
@@ -126,5 +139,13 @@ public class Customer {
 
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public List<CartItem> getCartItems() {
+        return cartItems;
+    }
+
+    public void setCartItems(List<CartItem> cartItems) {
+        this.cartItems = cartItems;
     }
 }

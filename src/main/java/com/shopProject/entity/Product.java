@@ -5,9 +5,10 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
-@Table(name = "Product")
+@Table(name = "product")
 public class Product {
 
     @Id
@@ -39,6 +40,10 @@ public class Product {
     @UpdateTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedAt;
+
+    @OneToMany(mappedBy = "product",
+                cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
+    private List<CartItem> cartItems;
 
     public Product() {
     }

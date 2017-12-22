@@ -1,5 +1,6 @@
 package com.shopProject;
 
+import com.shopProject.entity.CartItem;
 import com.shopProject.entity.Product;
 import com.shopProject.entity.Customer;
 import org.hibernate.SessionFactory;
@@ -15,6 +16,7 @@ public class AppConfig {
     public SessionFactory sessionFactory() {
         return new Configuration()
                     .configure("hibernate.cfg.xml")
+                    .addAnnotatedClass(CartItem.class)
                     .addAnnotatedClass(Product.class)
                     .addAnnotatedClass(Customer.class)
                     .buildSessionFactory();
