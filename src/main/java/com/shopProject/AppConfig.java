@@ -3,6 +3,7 @@ package com.shopProject;
 import com.shopProject.entity.CartItem;
 import com.shopProject.entity.Product;
 import com.shopProject.entity.Customer;
+import com.shopProject.entity.Review;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.springframework.context.annotation.Bean;
@@ -17,6 +18,7 @@ public class AppConfig {
         return new Configuration()
                     .configure("hibernate.cfg.xml")
                     .addAnnotatedClass(CartItem.class)
+                    .addAnnotatedClass(Review.class)
                     .addAnnotatedClass(Product.class)
                     .addAnnotatedClass(Customer.class)
                     .buildSessionFactory();

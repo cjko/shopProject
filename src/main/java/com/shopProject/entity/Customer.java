@@ -50,6 +50,10 @@ public class Customer {
                 cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
     private List<CartItem> cartItems;
 
+    @OneToMany(mappedBy = "customer",
+            cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
+    private List<Review> reviews;
+
     public Customer() {
     }
 

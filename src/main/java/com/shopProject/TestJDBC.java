@@ -3,6 +3,7 @@ package com.shopProject;
 import com.shopProject.entity.CartItem;
 import com.shopProject.entity.Customer;
 import com.shopProject.entity.Product;
+import com.shopProject.entity.Review;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -14,6 +15,7 @@ public class TestJDBC {
         SessionFactory sessionFactory = new Configuration()
                                             .configure("hibernate.cfg.xml")
                                             .addAnnotatedClass(CartItem.class)
+                                            .addAnnotatedClass(Review.class)
                                             .addAnnotatedClass(Product.class)
                                             .addAnnotatedClass(Customer.class)
                                             .buildSessionFactory();
@@ -32,8 +34,8 @@ public class TestJDBC {
             session.save(tempCustomer);
 
             // Create Cart Item
-            CartItem tempCartItem = new CartItem(10,tempCustomer,tempProduct);
-            session.save(tempCartItem);
+            Review tempReview = new Review(5,"This apple is delicious",tempCustomer,tempProduct);
+            session.save(tempReview);
 
             session.getTransaction().commit();
         } finally {
