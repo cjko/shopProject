@@ -34,8 +34,8 @@ public class TestJDBC {
             session.save(tempCustomer);
 
             // Create Cart Item
-            Review tempReview = new Review(5,"This apple is delicious",tempCustomer,tempProduct);
-            session.save(tempReview);
+            CartItem tempCartItem = new CartItem(123, tempCustomer,tempProduct);
+            session.save(tempCartItem);
 
             session.getTransaction().commit();
         } finally {

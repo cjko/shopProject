@@ -1,5 +1,6 @@
 package com.shopProject.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -43,10 +44,12 @@ public class Product {
 
     @OneToMany(mappedBy = "product",
                 cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
+    @JsonIgnore
     private List<CartItem> cartItems;
 
     @OneToMany(mappedBy = "product",
             cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
+    @JsonIgnore
     private List<Review> reviews;
 
     public Product() {

@@ -1,5 +1,7 @@
 package com.shopProject.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -31,9 +33,11 @@ public class Customer {
     private Date birthdate;
 
     @Column(name = "pw_hash")
+    @JsonIgnore
     private String pwHash;
 
     @Column(name = "pw_salt")
+    @JsonIgnore
     private String pwSalt;
 
     @Column(name = "created_at")
@@ -48,10 +52,12 @@ public class Customer {
 
     @OneToMany(mappedBy = "customer",
                 cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
+    @JsonIgnore
     private List<CartItem> cartItems;
 
     @OneToMany(mappedBy = "customer",
-            cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
+                cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
+    @JsonIgnore
     private List<Review> reviews;
 
     public Customer() {
