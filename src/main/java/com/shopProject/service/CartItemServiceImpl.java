@@ -17,4 +17,5 @@ public class CartItemServiceImpl implements CartItemService{
     public List<CartItem> getCartItems() {
         return cartItemDAO.getCartItems();
     }
+
 }

@@ -19,9 +19,33 @@ public class CustomerDAOImpl implements CustomerDAO {
     public List<Customer> getCustomers() {
         Session session = sessionFactory.getCurrentSession();
         session.beginTransaction();
-        Query<Customer> query = session.createQuery("from Customer", Customer.class);
+        Query<Customer> query = session.createQuery("FROM Customer", Customer.class);
         List<Customer> customerList = query.getResultList();
         session.getTransaction().commit();
         return customerList;
+    }
+
+    @Override
+    public Customer getCustomerById(int id) {
+        Session session = sessionFactory.getCurrentSession();
+        session.beginTransaction();
+        Query<Customer> query = session.createQuery("FROM Customer c WHERE c.id = :id", Customer.class)
+                                        .setParameter("id",id);
+        try {
+            Customer customer = query.getSingleResult();
+            session.getTransaction().commit();
+            return customer;
+        } catch (Exception e) {
+            session.getTransaction().commit();
+            return null;
+        }
+    }
+
+    @Override
+    public void createCustomer(Customer customer) {
+        Session session = sessionFactory.getCurrentSession();
+        session.beginTransaction();
+        session.save(customer);
+        session.getTransaction().commit();
     }
 }

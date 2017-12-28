@@ -33,11 +33,11 @@ public class Customer {
     private Date birthdate;
 
     @Column(name = "pw_hash")
-    @JsonIgnore
+//    @JsonIgnore
     private String pwHash;
 
     @Column(name = "pw_salt")
-    @JsonIgnore
+//    @JsonIgnore
     private String pwSalt;
 
     @Column(name = "created_at")
@@ -157,5 +157,22 @@ public class Customer {
 
     public void setCartItems(List<CartItem> cartItems) {
         this.cartItems = cartItems;
+    }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "id=" + id +
+                ", email='" + email + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", birthdate=" + birthdate +
+                ", pwHash='" + pwHash + '\'' +
+                ", pwSalt='" + pwSalt + '\'' +
+                ", createdAt=" + createdAt +
+                ", updatedAt=" + updatedAt +
+                ", cartItems=" + cartItems +
+                ", reviews=" + reviews +
+                '}';
     }
 }
