@@ -27,4 +27,9 @@ public class CustomerServiceImpl implements CustomerService {
     public void createCustomer(Customer customer) {
         customerDAO.createCustomer(customer);
     }
+
+    @Override
+    public List<Customer> getCustomersByEmail(String email) {
+        return customerDAO.getCustomersByEmail(email);
+    }
 }

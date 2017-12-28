@@ -48,4 +48,15 @@ public class CustomerDAOImpl implements CustomerDAO {
         session.save(customer);
         session.getTransaction().commit();
     }
+
+    @Override
+    public List<Customer> getCustomersByEmail(String email) {
+        Session session = sessionFactory.getCurrentSession();
+        session.beginTransaction();
+        Query<Customer> query = session.createQuery("FROM Customer c WHERE c.email = :email")
+                                        .setParameter("email", email);
+        List<Customer> customerList = query.getResultList();
+        session.getTransaction().commit();
+        return customerList;
+    }
 }

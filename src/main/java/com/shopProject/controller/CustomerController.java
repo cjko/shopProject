@@ -16,7 +16,10 @@ public class CustomerController {
     private CustomerService customerService;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public List<Customer> getCustomers() {
+    public List<Customer> getCustomers(@RequestParam(value = "email", defaultValue = "") String email) {
+        if(email.length()>0) {
+            return customerService.getCustomersByEmail(email);
+        }
         return customerService.getCustomers();
     }
 
