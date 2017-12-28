@@ -86,4 +86,16 @@ public class CartItem {
     public void setProduct(Product product) {
         this.product = product;
     }
+
+    @Override
+    public String toString() {
+        return "CartItem{" +
+                "id=" + id +
+                ", quantity=" + quantity +
+                ", createdAt=" + createdAt +
+                ", updatedAt=" + updatedAt +
+                ", customer=" + customer +
+                ", product=" + product +
+                '}';
+    }
 }

@@ -18,4 +18,13 @@ public class CartItemServiceImpl implements CartItemService{
         return cartItemDAO.getCartItems();
     }
 
+    @Override
+    public void createCartItem(int quantity, int customerId, int productId) {
+        cartItemDAO.createCartItem(quantity, customerId, productId);
+    }
+
+    @Override
+    public List<CartItem> getCartItemsByCustomerId(int customerId) {
+        return cartItemDAO.getCartItemsByCustomerId(customerId);
+    }
 }

@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface ProductDAO {
     public List<Product> getProducts();
+    public void createProduct(Product product);
 }

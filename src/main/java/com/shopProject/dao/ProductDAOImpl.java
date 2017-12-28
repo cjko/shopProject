@@ -24,4 +24,12 @@ public class ProductDAOImpl implements ProductDAO {
         session.getTransaction().commit();
         return productList;
     }
+
+    @Override
+    public void createProduct(Product product) {
+        Session session = sessionFactory.getCurrentSession();
+        session.beginTransaction();
+        session.save(product);
+        session.getTransaction().commit();
+    }
 }
