@@ -59,8 +59,13 @@ public class CartItemDAOImpl implements CartItemDAO {
                                                     "AND c.product.id = :productId", CartItem.class)
                 .setParameter("customerId", customerId)
                 .setParameter("productId", productId);
-        CartItem cartItem = query.getSingleResult();
-        session.remove(cartItem);
-        session.getTransaction().commit();
+        try {
+            CartItem cartItem = query.getSingleResult();
+            session.remove(cartItem);
+            session.getTransaction().commit();
+        } catch(Exception e) {
+            session.getTransaction().commit();
+        }
+
     }
 }
