@@ -39,4 +39,15 @@ public class CartItemController {
         cartItemService.createCartItem(quantity, customerId, productId);
     }
 
+    @RequestMapping(value = "/", method = RequestMethod.DELETE)
+    public void deleteCartItem(@RequestBody String cartItem) {
+        JsonParser parser = new BasicJsonParser();
+        Map<String, Object> json = parser.parseMap(cartItem);
+
+        int customerId = ((Number) json.get("customer")).intValue();
+        int productId = ((Number) json.get("product")).intValue();
+
+        cartItemService.deleteCartItem(customerId, productId);
+    }
+
 }

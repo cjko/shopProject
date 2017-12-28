@@ -49,4 +49,18 @@ public class CartItemDAOImpl implements CartItemDAO {
         session.getTransaction().commit();
         return cartItemList;
     }
+
+    @Override
+    public void deleteCartItem(int customerId, int productId) {
+        Session session = sessionFactory.getCurrentSession();
+        session.beginTransaction();
+        Query<CartItem> query = session.createQuery("FROM CartItem c " +
+                                                    "WHERE c.customer.id = :customerId " +
+                                                    "AND c.product.id = :productId", CartItem.class)
+                .setParameter("customerId", customerId)
+                .setParameter("productId", productId);
+        CartItem cartItem = query.getSingleResult();
+        session.remove(cartItem);
+        session.getTransaction().commit();
+    }
 }
