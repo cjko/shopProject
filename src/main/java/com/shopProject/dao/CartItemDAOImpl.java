@@ -32,11 +32,15 @@ public class CartItemDAOImpl implements CartItemDAO {
     public void createCartItem(int quantity, int customerId, int productId) {
         Session session = sessionFactory.getCurrentSession();
         session.beginTransaction();
+
         Customer customer = session.get(Customer.class, customerId);
         Product product = session.get(Product.class, productId);
-        CartItem cartItem = new CartItem(quantity, customer, product);
-        session.save(cartItem);
+        if(customer != null && product != null) {
+            CartItem cartItem = new CartItem(quantity, customer, product);
+            session.save(cartItem);
+        }
         session.getTransaction().commit();
+
     }
 
     @Override
@@ -45,9 +49,15 @@ public class CartItemDAOImpl implements CartItemDAO {
         session.beginTransaction();
         Query<CartItem> query = session.createQuery("FROM CartItem c WHERE c.customer.id = :customerId", CartItem.class)
                                         .setParameter("customerId", customerId);
-        List<CartItem> cartItemList = query.getResultList();
-        session.getTransaction().commit();
-        return cartItemList;
+        try {
+            List<CartItem> cartItemList = query.getResultList();
+            session.getTransaction().commit();
+            return cartItemList;
+        } catch(Exception e) {
+            session.getTransaction().commit();
+            return null;
+        }
+
     }
 
     @Override
