@@ -16,6 +16,7 @@ public class Customer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @Access(AccessType.PROPERTY)
     @Column(name = "id")
     private int id;
 
